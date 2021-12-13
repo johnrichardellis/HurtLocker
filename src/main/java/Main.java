@@ -45,7 +45,6 @@ public class Main {
         } catch(Exception e) { // catch if exception
             throw new UnsupportedOperationException();
         }
-
     }
 
     public String breakLineAt() {
@@ -63,16 +62,28 @@ public class Main {
         }
     }
 
+    public String makeNameNice() {
+        try {
+            String result = "";
+            String groceryList = readRawDataToString();
+            Pattern pat = Pattern.compile("name", Pattern.CASE_INSENSITIVE); // look for name case-insensitive
+            Matcher mat = pat.matcher(groceryList);
+            result = result + mat.replaceAll("Name"); // replace all occurrences of name with Name
+            System.out.println(result);
+            return result;
+        } catch (Exception e) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
 
 
 
 
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
+
         System.out.println(output);
-
-
-
     }
 
 
