@@ -18,13 +18,13 @@ public class Main {
         try(Scanner scanner = new Scanner(file)) { // instance of new scanner
 
             while (scanner.hasNextLine()) { // keep using scanner while there is a next line
-//                String line = scanner.nextLine(); //
+//                // append to result
                 result.append(scanner.nextLine()).append("\n"); // add the line and new line to result
             }
         } catch (IOException e) { // might throw exception
             e.printStackTrace(); // print stack trace if so
         }
-//        System.out.println(result.toString());
+        System.out.println(result.toString());
         return result.toString(); // convert sb to string and return
 
     }
@@ -39,21 +39,39 @@ public class Main {
             Pattern pat = Pattern.compile("[;#^*%]"); // replace these symbols
             Matcher mat = pat.matcher(groceryList); // in our groceryList
             result = result + mat.replaceAll(":"); // with the colon
+
             System.out.println(result);
             return result;
-        } catch(Exception e) {
+        } catch(Exception e) { // catch if exception
             throw new UnsupportedOperationException();
         }
-//        System.out.println(result);
+
+    }
+
+    public String breakLineAt() {
+        try {
+            String result = "";
+            String groceryList = readRawDataToString();
+            Pattern pat = Pattern.compile("#"); // since there is always a # before name
+            Matcher mat = pat.matcher(groceryList);
+            result = result + mat.replaceAll("\n"); // with a line-break
+
+            System.out.println(result);
+            return result;
+        } catch (Exception e) { // catch if exception
+            throw new UnsupportedOperationException();
+        }
     }
 
 
-//    public String correctNames()
+
 
 
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
         System.out.println(output);
+
+
 
     }
 
